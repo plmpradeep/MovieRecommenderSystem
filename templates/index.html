@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html ng-app="mrs">
+ <head>
+   <title>Movie Recomender System</title>
+   <script src="static/js/angular/angular.min.js"></script>
+   <script src="static/js/angular/angular-animate.js"></script>
+   <script src="static/js/angular/angular-sanitize.js"></script>
+   <script src="static/js/bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
+   <script src="static/js/main.js"></script>
+   <link href="static/styles/bootstrap.min.css" rel="stylesheet">
+   <link href="static/styles/main.css" rel="stylesheet">
+ </head>
+ <body>
+
+<div class="jumbotron text-center">
+ <h1>Movie Recommender System</h1>
+
+<p>Recommend movies based on</p>
+ <form>
+   <div class="col-sm-3"></div>
+   <div class="input-group col-sm-6 tex" ng-controller="TypeaheadCtrl">
+     <input type="text" ng-model="selected" class="form-control"  placeholder="Search for movie" uib-typeahead="movie for movie in movies | filter:$viewValue | limitTo:10" typeahead-on-select="onSelect($item)" size="50"  required>
+    <p style="padding-top:50px">Movies similar to {{ '{{selectedMovie}}' }}:</p>
+     <uib-tabset active="activeJustified" justified="true">
+<uib-tab index="0" heading="TF-IDF">
+<br>
+<ul class="list-group">
+ <li class="list-group-item" ng-repeat="m in tfMovies">{{ '{{m}}' }}</li>
+</ul>
+</uib-tab>
+<uib-tab index="1" heading="Pearson">
+
+<br>
+<ul class="list-group">
+ <li class="list-group-item" ng-repeat="m in pearsonMovies">{{ '{{m}}' }}</li>
+</ul>
+</uib-tab>
+</uib-tabset>
+
+
+   </div>
+   <div class="col-sm-3"></div>
+ </form>
+</div>
+
+
+
+ </body>
+</html>
